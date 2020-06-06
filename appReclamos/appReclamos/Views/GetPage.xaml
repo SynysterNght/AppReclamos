@@ -4,12 +4,226 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="appReclamos.Views.GetPage">
+             x:Class="appReclamos.Views.GetPage"
+             BindingContext="{Binding Main , Source={StaticResource Locator}}"
+             Title="Consultar Reclamo"
+             >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            BindingContext="{Binding Get}">
+            <ScrollView>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="idReclamo:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                />
+                    <Label
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                        VerticalOptions="Center"
+                    Text="{Binding IdReclamo, Mode=TwoWay}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    >
+                    </Label>
+
+                    <Label Text="ClientId:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                    <Label
+                        VerticalOptions="Center"
+                    Grid.Row="1"
+                       Grid.Column="1"
+                    Text="{Binding IdCliente, Mode=TwoWay}"
+                    FontSize="Small"
+                    
+                    />
+
+                    <Label Text="Employee ID:"
+                       VerticalOptions="Center"
+                       FontSize="Medium"
+                       HorizontalOptions="Start"
+                       TextColor="Black"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                    />
+                    <Label
+                        VerticalOptions="Center"
+                    FontSize="Small"
+                    Text="{Binding IdEmpleado, Mode=TwoWay}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    />
+                    
+                    <Label Text="OrderId:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                />
+                    <Label
+                        VerticalOptions="Center"
+                    Grid.Row="3"
+                   Grid.Column="1"
+                    FontSize="Small"
+                    Text="{Binding IdOrden, Mode=TwoWay}"/>
+                    
+                    <Label Text="Status:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                       Grid.Row="4"
+                   Grid.Column="0"
+                    />
+                    <Label
+                        VerticalOptions="Center"
+                    FontSize="Small"
+                    Text="{Binding Estado , Mode=TwoWay}"
+                    
+                    Grid.Row="4"
+                   Grid.Column="1"
+                    />
+                    <Label Text="Type:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                       Grid.Row="5"
+                   Grid.Column="0"
+                    />
+                    <Label
+                    FontSize="Small"
+                        VerticalOptions="Center"
+                    Text="{Binding Tipo , Mode=TwoWay}"
+                    
+                    Grid.Row="5"
+                   Grid.Column="1"
+                    />
+                    <Label Text="Subject:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       VerticalOptions="Center"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                />
+                    <Label
+                    FontSize="Small"
+                     VerticalOptions="Center"   
+                    Text="{Binding Asunto, Mode=TwoWay}"
+                     Grid.Row="6"
+                   Grid.Column="1"/>
+
+                    
+
+                    <Label Text="Description:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   TextColor="Black"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                />
+                    <Label
+                    FontSize="Small"
+                    Text="{Binding Descripcion, Mode=TwoWay}"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"/>
+
+                    <Label Text="Cause:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       VerticalOptions="Center"
+                   Grid.Row="9"
+                   Grid.Column="0"
+                />
+                    <Label
+                    FontSize="Small"
+                        VerticalOptions="Center"
+                    Text="{Binding Causa, Mode=TwoWay}"
+                    Grid.Row="9"
+                    Grid.Column="1"/>
+
+                    <Label Text="Respuestas:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       VerticalOptions="Center"
+                   Grid.Row="10"
+                   Grid.Column="0"
+                />
+
+                    
+
+                </Grid>
+                
+
+
+            </ScrollView>
+            <ListView x:Name="RespuestasListView" BackgroundColor="Silver"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding RespuestasList}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="5">
+                                
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator>
+
+            </ActivityIndicator>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+
+                <Button
+                Command="{Binding DeleteCommand}"
+                BackgroundColor="Navy"
+                BorderRadius="25"
+                Text="Eliminar"
+                TextColor="White"
+                    FontSize="Small"
+                ></Button>
+                <Button
+                Command="{Binding AnswerCommand}"
+                BackgroundColor="Navy"
+                BorderRadius="25"
+                Text="Responder"
+                TextColor="White"
+                    FontSize="Small"
+                ></Button>
+
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

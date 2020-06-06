@@ -10,29 +10,74 @@ namespace appReclamos.Helpers
 {
     public class ApiService
     {
-        public async Task<List<T>> Get<T>(string urlBase, string servicePrefix, string controller)
+        public async Task<Response> GetList<T>(
+            string urlBase,
+            string servicePrefix,
+            string controller)
         {
             try
             {
                 var client = new HttpClient();
-                var url = string.Format("{0}{1}", servicePrefix, controller);
                 client.BaseAddress = new Uri(urlBase);
+                var url = string.Format(
+                    "{0}{1}",
+                    servicePrefix,
+                    controller);
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
                 }
+
                 var result = await response.Content.ReadAsStringAsync();
                 var list = JsonConvert.DeserializeObject<List<T>>(result);
-                return list;
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Ok",
+                    Result = list,
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return null;
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
             }
         }
 
        
+
+        /*   public async Task<List<T>> Get<T>(string urlBase, string servicePrefix, string controller)
+           {
+               try
+               {
+                   var client = new HttpClient();
+                   var url = string.Format("{0}{1}", servicePrefix, controller);
+                   client.BaseAddress = new Uri(urlBase);
+                   var response = await client.GetAsync(url);
+                   if (!response.IsSuccessStatusCode)
+                   {
+                       return null;
+                   }
+                   var result = await response.Content.ReadAsStringAsync();
+                   var list = JsonConvert.DeserializeObject<List<T>>(result);
+                   return list;
+               }
+               catch (Exception e)
+               {
+                   return null;
+               }
+           }*/
+
+
 
         public async Task<Response> Post<T>(
             string urlBase,

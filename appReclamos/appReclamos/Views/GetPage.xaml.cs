@@ -12,7 +12,7 @@ namespace appReclamos.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GetPage : ContentPage
     {
-        public GetPage()
+        public GetPage(string IdReclamo)
         {
             InitializeComponent();
         }

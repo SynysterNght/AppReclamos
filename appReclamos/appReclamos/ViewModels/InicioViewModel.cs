@@ -27,8 +27,9 @@ namespace appReclamos.ViewModels
         public async void Consultar() 
         {
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Get = new GetViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new GetPage());
+            mainViewModel.Get = new GetViewModel(IdReclamo);
+
+            await Application.Current.MainPage.Navigation.PushAsync(new GetPage(this.IdReclamo));
         }
 
         #endregion
