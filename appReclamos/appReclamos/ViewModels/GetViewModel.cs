@@ -156,6 +156,32 @@ namespace appReclamos.ViewModels
 
         }
         
+        public async void DeleteSupport()
+        {
+            
+            var response = await this.apiService.Delete<Support>(
+                  
+                "https://deletesupportsyn.azurewebsites.net/",
+                "api/",
+                "FDeleteSupport/" + this.IdReclamo 
+                
+                );
+            if (response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Success",
+                   "Se ha Eliminado  correctamente",
+                   "Aceptar");
+
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   "Se produjo un error",
+                   "Aceptar");
+            }
+        }
 
         #endregion
 
@@ -172,7 +198,7 @@ namespace appReclamos.ViewModels
         {
             get
             {
-                return new RelayCommand(Delete);
+                return new RelayCommand(DeleteSupport);
             }
 
         }
