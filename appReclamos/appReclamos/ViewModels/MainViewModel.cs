@@ -18,9 +18,9 @@ namespace appReclamos.ViewModels
         public MainViewModel()
         {
             instance = this;
-            this.Inicio = new InicioPage();
+            ///this.Inicio = new InicioPage();
 
-            ///this.Create = new CreateViewModel();
+            this.Create = new CreateViewModel();
         }
         #endregion
 

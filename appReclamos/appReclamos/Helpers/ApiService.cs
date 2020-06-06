@@ -32,7 +32,7 @@ namespace appReclamos.Helpers
             }
         }
 
-        public async Task<bool> Post<T>(string urlBase, string servicePrefix, string controller, Support data)
+       /* public async Task<bool> Post<T>(string urlBase, string servicePrefix, string controller, Support data)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace appReclamos.Helpers
                 return false;
             }
         }
-
+        /*/
 
         public async Task<Response> Post<T>(
             string urlBase,

@@ -24,3 +24,4 @@ namespace appReclamos.Models
             set;
         }
     }
+}

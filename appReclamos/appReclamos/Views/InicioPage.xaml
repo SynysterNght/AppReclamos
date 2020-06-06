@@ -6,7 +6,6 @@
              mc:Ignorable="d"
              x:Class="appReclamos.Views.InicioPage"
              Title="Pagina Inicio"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
     <ContentPage.Content>
         <StackLayout>

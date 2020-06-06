@@ -25,13 +25,20 @@ namespace appReclamos.ViewModels
         private string tipo;
         private string asunto;
         private string descripcion;
-       
+
         #endregion
 
         #region Properties
-       
+        public string IdReclamo { get; set; }
+        public string IdCliente { get; set; }
+        public string IdEmpleado { get; set; }
+        public string IdOrden { get; set; }
+        public string Tipo { get; set; }
+        public string Asunto { get; set; }
+        public string Descripcion { get; set; }
 
-        
+
+
         #endregion
 
         #region Constructor
@@ -44,7 +51,7 @@ namespace appReclamos.ViewModels
 
         #region Metodos
 
-        private async Task<bool> CreateSupport(Support data)
+        /*private async Task<bool> CreateSupport(Support data)
         {
             var res = await this.apiService.Post<Support>(
                 "https://createsupportcmsyn.azurewebsites.net/",
@@ -53,10 +60,10 @@ namespace appReclamos.ViewModels
                 data
                 );
             return res;
-        }
+        }*/
 
         private async void CreateAsync() {
-            if (string.IsNullOrEmpty(this.idreclamo))
+            if (string.IsNullOrEmpty(this.IdReclamo))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -65,7 +72,7 @@ namespace appReclamos.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.idcliente))
+            if (string.IsNullOrEmpty(this.IdCliente))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -74,7 +81,7 @@ namespace appReclamos.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.idempleado))
+            if (string.IsNullOrEmpty(this.IdEmpleado))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -82,7 +89,7 @@ namespace appReclamos.ViewModels
                     "Aceptar");
                 return;
             }
-            if (string.IsNullOrEmpty(this.idorden))
+            if (string.IsNullOrEmpty(this.IdOrden))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -91,6 +98,40 @@ namespace appReclamos.ViewModels
                 return;
             }
 
+            var data = new Support
+            {
+                Id=this.IdReclamo,
+                ClientId=this.IdCliente,
+                EmployeeId=this.IdEmpleado,
+                OrderId=this.IdOrden,
+                Type=this.Tipo,
+                Subject=this.Asunto,
+                Description=this.Descripcion
+
+
+            };
+
+            var response = await this.apiService.Post(
+                "https://createsupportcmsyn.azurewebsites.net/",
+                "api/",
+                "FCreateSupport",
+                data
+                );
+            if(response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Success",
+                   "Se ha registrado correctamente",
+                   "Aceptar");
+
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   "Se produjo un error",
+                   "Aceptar");
+            }
         }
         #endregion
 
