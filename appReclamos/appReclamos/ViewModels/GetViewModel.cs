@@ -1,5 +1,6 @@
 ﻿using appReclamos.Helpers;
 using appReclamos.Models;
+using appReclamos.Views;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,11 @@ namespace appReclamos.ViewModels
             get { return this.causa; }
             set { SetValue(ref this.causa, value); }
         }
-        ///public ListView RespuestasList { get; set; }
+        public string[] RespuestasList
+        {
+            get { return this.respuestas; }
+            set { SetValue(ref this.respuestas, value); }
+        }
         #endregion
 
 
@@ -130,6 +135,7 @@ namespace appReclamos.ViewModels
                 this.Descripcion = data[0].Description;
                 this.Estado = data[0].Status;
                 this.Causa = data[0].Cause;
+                this.RespuestasList = data[0].Answers;
 
             }
             else
@@ -141,6 +147,16 @@ namespace appReclamos.ViewModels
             }
 
         }
+
+        public async void ModifyAnswer()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Modify = new ModifyViewModel(this.IdReclamo);
+            await Application.Current.MainPage.Navigation.PushAsync(new ModifyPage(this.IdReclamo));
+
+        }
+        
+
         #endregion
 
         #region Commands
@@ -148,7 +164,7 @@ namespace appReclamos.ViewModels
         {
             get
             {
-                return new RelayCommand(Answer);
+                return new RelayCommand(ModifyAnswer);
             }
 
         }

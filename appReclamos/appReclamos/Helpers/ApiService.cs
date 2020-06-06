@@ -55,30 +55,6 @@ namespace appReclamos.Helpers
 
        
 
-        /*   public async Task<List<T>> Get<T>(string urlBase, string servicePrefix, string controller)
-           {
-               try
-               {
-                   var client = new HttpClient();
-                   var url = string.Format("{0}{1}", servicePrefix, controller);
-                   client.BaseAddress = new Uri(urlBase);
-                   var response = await client.GetAsync(url);
-                   if (!response.IsSuccessStatusCode)
-                   {
-                       return null;
-                   }
-                   var result = await response.Content.ReadAsStringAsync();
-                   var list = JsonConvert.DeserializeObject<List<T>>(result);
-                   return list;
-               }
-               catch (Exception e)
-               {
-                   return null;
-               }
-           }*/
-
-
-
         public async Task<Response> Post<T>(
             string urlBase,
             string servicePrefix,
@@ -125,6 +101,55 @@ namespace appReclamos.Helpers
                 };
             }
         }
+
+        public async Task<Response> Put<T>(
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            T model)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(model);
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                
+                client.BaseAddress = new Uri(urlBase);
+                var url = string.Format(
+                    "{0}{1}",
+                    servicePrefix,
+                    controller
+                    );
+                var response = await client.PutAsync(url, content);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = JsonConvert.DeserializeObject<Response>(result);
+                    error.IsSuccess = false;
+                    return error;
+                }
+
+                var newRecord = JsonConvert.DeserializeObject<T>(result);
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = newRecord,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
 
     }
 }

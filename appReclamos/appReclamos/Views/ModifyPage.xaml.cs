@@ -12,7 +12,7 @@ namespace appReclamos.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ModifyPage : ContentPage
     {
-        public ModifyPage()
+        public ModifyPage(string id)
         {
             InitializeComponent();
         }

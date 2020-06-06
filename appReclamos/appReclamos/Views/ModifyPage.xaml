@@ -4,12 +4,46 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="appReclamos.Views.ModifyPage">
+             x:Class="appReclamos.Views.ModifyPage"
+             BindingContext="{Binding Main , Source={StaticResource Locator}}"
+             Title="Consultar Reclamo"
+             >
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            BindingContext="{Binding Modify}">
+            <Label
+                Text="{Binding IdReclamo}"
+                />
+            <Label
+                Text="Respuesta:"
+                VerticalOptions="Center"
+                TextColor="Black">
+                
+                
+            </Label>
+
+            <Entry
+                    FontSize="Small"
+                    Placeholder="Respuesta"
+                    Keyboard="Text"
+                    HorizontalOptions="Fill"
+                    Text="{Binding Respuesta, Mode=TwoWay}"
+                    
+                    >
+            </Entry>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Button
+                    Command="{Binding RespondCommand}"
+                BackgroundColor="Navy"
+                BorderRadius="25"
+                Text="Enviar"
+                TextColor="White"
+                    FontSize="Small"
+                ></Button>
+                
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

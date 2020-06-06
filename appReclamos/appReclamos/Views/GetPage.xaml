@@ -192,7 +192,10 @@
                                 CornerRadius="20"
                                 HasShadow="True"
                                 Margin="5">
-                                
+                                <Label
+                                    TextColor="Black"
+                                    
+                                    ></Label>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
