@@ -32,32 +32,7 @@ namespace appReclamos.Helpers
             }
         }
 
-       /* public async Task<bool> Post<T>(string urlBase, string servicePrefix, string controller, Support data)
-        {
-            try
-            {
-                var client = new HttpClient();
-                var url = string.Format("{0}{1}", servicePrefix, controller);
-                client.BaseAddress = new Uri(urlBase);
-
-                var content = new StringContent(data.ToString(), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
-
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return false;
-                }
-                return true;
-
-
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
-        /*/
+       
 
         public async Task<Response> Post<T>(
             string urlBase,

@@ -8,7 +8,7 @@ namespace appReclamos.ViewModels
     public class MainViewModel
     {
         #region ViewModels
-        public InicioPage Inicio { get; set; }
+        public InicioViewModel Inicio { get; set; }
         public CreateViewModel Create { get; set; }
         public GetViewModel Get { get; set; }
         public ModifyViewModel Modify { get; set; }
@@ -18,9 +18,9 @@ namespace appReclamos.ViewModels
         public MainViewModel()
         {
             instance = this;
-            ///this.Inicio = new InicioPage();
+            this.Inicio = new InicioViewModel();
 
-            this.Create = new CreateViewModel();
+            ///this.Create = new CreateViewModel();
         }
         #endregion
 

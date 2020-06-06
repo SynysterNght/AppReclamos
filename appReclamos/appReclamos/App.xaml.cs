@@ -11,7 +11,7 @@ namespace appReclamos
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage (new CreatePage());
+            MainPage = new NavigationPage (new InicioPage());
         }
 
         protected override void OnStart()
