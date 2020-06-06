@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="appReclamos.Views.CreatePage"
+             Title="New Support"
+             BindingContext="{Binding Main , Source={StaticResource Locator}}"
+             >
+    <ContentPage.Content>
+        <StackLayout      
+            BindingContext="{Binding Create}">
+
+            <ScrollView>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="idReclamo:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                />
+                <Entry
+                    FontSize="Small"
+                    Placeholder="Id Reclamo"
+                    Keyboard="Numeric"
+                    HorizontalOptions="Fill"
+                    Text="{Binding idreclamo, Mode=TwoWay}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    >
+                </Entry>
+
+                <Label Text="ClientId:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                />
+                <Entry
+                    Grid.Row="1"
+                       Grid.Column="1"
+                    Text="{Binding idcliente, Mode=TwoWay}"
+                    FontSize="Small"
+                    Placeholder="ID cliente"
+                    Keyboard="Numeric"
+                    >
+                </Entry>
+                <Label Text="Employee ID:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                />
+                <Entry
+                    FontSize="Small"
+                    Placeholder="ID empleado"
+                    Text="{Binding idempleado, Mode=TwoWay}"
+                    Keyboard="Numeric"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    >
+                </Entry>
+                <Label Text="OrderId:"
+                       VerticalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                />
+                <Entry
+                Grid.Row="3"
+                   Grid.Column="1"
+                    FontSize="Small"
+                    Placeholder="Orden"
+                    Text="{Binding idorden, Mode=TwoWay}"
+                    Keyboard="Numeric"
+                    >
+                </Entry>
+                <Label Text="Type:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                       Grid.Row="4"
+                   Grid.Column="0"
+                />
+                <Entry
+                    FontSize="Small"
+                    Placeholder="Tipo de reclamo"
+                    Text="{Binding tipo , Mode=TwoWay}"
+                    Keyboard="Text"
+                Grid.Row="4"
+                   Grid.Column="1"
+                    >
+                </Entry>
+                <Label Text="Subject:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   TextColor="Black"
+                       VerticalOptions="Center"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                />
+                <Entry
+                    FontSize="Small"
+                    Placeholder="Asunto"
+                    Text="{Binding asunto, Mode=TwoWay}"
+                    Keyboard="Text"
+                Grid.Row="5"
+                   Grid.Column="1"
+                    >
+                </Entry>
+                <Label Text="Description:"
+                   FontSize="Medium"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   TextColor="Black"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                />
+                <Entry
+                    FontSize="Small"
+                    Placeholder="Redacte Brevemente el problema"
+                    Text="{Binding descripcion, Mode=TwoWay}"
+                    Keyboard="Text"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    >
+                </Entry>
+                
+            </Grid>
+
+          
+
+        </ScrollView>
+            <ActivityIndicator>
+                
+            </ActivityIndicator>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                
+                <Button
+                BackgroundColor="Navy"
+                BorderRadius="25"
+                Text="Cancelar"
+                TextColor="White"
+                    FontSize="Small"
+                ></Button>
+                <Button
+                Command="{Binding CreateCommand}"
+                BackgroundColor="Navy"
+                BorderRadius="25"
+                Text="Crear"
+                TextColor="White"
+                    FontSize="Small"
+                ></Button>
+
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
