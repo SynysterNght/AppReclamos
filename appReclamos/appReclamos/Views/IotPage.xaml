@@ -42,14 +42,40 @@
                     FontSize="Small"
                 ></Button>
             <Button
-                Command="{Binding AnswerCommand}"
+                Command="{Binding ListCommand}"
                 BackgroundColor="Navy"
                 BorderRadius="25"
                 Text="Responder"
                 TextColor="White"
                     FontSize="Small">
                 
+                
             </Button>
+
+            <ListView x:Name="DatosListView" BackgroundColor="Silver"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                ItemsSource="{Binding DatosList,Mode=TwoWay}"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                                <StackLayout Orientation="Horizontal" Margin="5" HeightRequest="90">
+                                <Label Text="{Binding messageId}" />
+
+                                <Label Text="{Binding deviceId}"  />
+                                <Label Text="{Binding temperature}" />
+
+                                <Label Text="{Binding humidity}"  />
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

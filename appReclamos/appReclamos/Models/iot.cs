@@ -7,12 +7,17 @@ namespace appReclamos.Models
 {
     public class iot
     {
-       
 
-        [JsonProperty("temperatura")]
-        public string temperatura { get; set; }
+        [JsonProperty("messageId")]
+        public string messageId { get; set; }
 
-        [JsonProperty("humedad")]
-        public string humedad { get; set; }
+        [JsonProperty("deviceId")]
+        public string deviceId { get; set; }
+
+        [JsonProperty("temperature")]
+        public double temperature { get; set; }
+
+        [JsonProperty("humidity")]
+        public double humidity { get; set; }
     }
 }

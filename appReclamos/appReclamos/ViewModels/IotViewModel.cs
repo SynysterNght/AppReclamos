@@ -27,6 +27,7 @@ namespace appReclamos.ViewModels
         public string MensajeIot { get; set; }
         public string Temperatura { get; set; }
         public string Humedad { get; set; }
+        public List<iot> DatosList { get; set; }
         #endregion
 
         #region Constructor
@@ -78,6 +79,46 @@ namespace appReclamos.ViewModels
                    "Aceptar");
             }
         }
+
+        private async void ListarDataAsync()
+        {
+            var response = await this.apiService.GetList<iot>(
+                "https://consultardatossyniot.azurewebsites.net/",
+                "api/",
+                "ConsultarDatosIot"
+
+                );
+
+
+            if(response.IsSuccess)
+            {
+                
+
+                var data = (List<iot>)response.Result;
+                DatosList = data;
+
+
+               
+            
+
+                for (int i = 0; i < 1; i++)
+                {
+                    /*
+                    this.DatosList[i].messageId = data[i].messageId;
+                    this.DatosList[i].deviceId = data[i].deviceId;
+                    this.DatosList[i].temperature = data[i].temperature;
+                    this.DatosList[i].humidity = data[i].humidity;*/
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   response.Message,
+                   "Aceptar");
+            }
+            
+        }
         #endregion
 
 
@@ -87,6 +128,15 @@ namespace appReclamos.ViewModels
             get
             {
                 return new RelayCommand(SendMessageAsync);
+            }
+
+        }
+
+        public ICommand ListCommand
+        {
+            get
+            {
+                return new RelayCommand(ListarDataAsync);
             }
 
         }
