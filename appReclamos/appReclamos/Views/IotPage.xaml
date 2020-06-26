@@ -41,16 +41,7 @@
                 TextColor="White"
                     FontSize="Small"
                 ></Button>
-            <Button
-                Command="{Binding ListCommand}"
-                BackgroundColor="Navy"
-                BorderRadius="25"
-                Text="Responder"
-                TextColor="White"
-                    FontSize="Small">
-                
-                
-            </Button>
+            
 
             <ListView x:Name="DatosListView" BackgroundColor="Silver"
                 HasUnevenRows="true" 
@@ -60,9 +51,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            
-                                <StackLayout Orientation="Horizontal" Margin="5" HeightRequest="90">
-                                <Label Text="{Binding messageId}" />
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="True"
+                                Margin="5">
+
+                                <StackLayout Orientation="Horizontal" >
+                                <Label Text="{Binding messageId}" WidthRequest="20"/>
 
                                 <Label Text="{Binding deviceId}"  />
                                 <Label Text="{Binding temperature}" />
@@ -70,7 +65,7 @@
                                 <Label Text="{Binding humidity}"  />
 
                             </StackLayout>
-
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
