@@ -181,10 +181,8 @@
             <ListView x:Name="RespuestasListView" BackgroundColor="Silver"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
-                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                 ItemsSource="{Binding RespuestasList}"
-                SeparatorVisibility="None"
-                RefreshCommand="{Binding RefreshCommand}">
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -192,10 +190,7 @@
                                 CornerRadius="20"
                                 HasShadow="True"
                                 Margin="5">
-                                <Label
-                                    TextColor="Black"
-                                    
-                                    ></Label>
+                                
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

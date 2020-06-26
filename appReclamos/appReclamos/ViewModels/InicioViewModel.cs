@@ -32,6 +32,13 @@ namespace appReclamos.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new GetPage(this.IdReclamo));
         }
 
+        public async void IoT()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Iot = new IotViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new IotPage());
+        }
         #endregion
 
 
@@ -53,7 +60,14 @@ namespace appReclamos.ViewModels
             }
 
         }
+        public ICommand IoTCommad
+        {
+            get
+            {
+                return new RelayCommand(IoT);
+            }
 
+        }
         #endregion
 
 

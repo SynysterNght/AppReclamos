@@ -27,7 +27,8 @@ namespace appReclamos.ViewModels
         private string descripcion;
         private string estado;
         private string causa;
-        private string[] respuestas;
+        private string[] respuestaslist;
+        
 
         #endregion
 
@@ -80,23 +81,13 @@ namespace appReclamos.ViewModels
         }
         public string[] RespuestasList
         {
-            get { return this.respuestas; }
-            set { SetValue(ref this.respuestas, value); }
+            get { return this.respuestaslist; }
+            set { SetValue(ref this.respuestaslist, value); }
         }
         #endregion
 
+     
 
-        #region Metodos
-        public async void Answer()
-        {
-
-
-        }
-        public async void Delete()
-        {
-
-        }
-        #endregion
 
         #region Constructor
         public GetViewModel(string id)

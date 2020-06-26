@@ -47,6 +47,14 @@
                 BorderRadius="25"
                 VerticalOptions="Center"
                 HorizontalOptions="CenterAndExpand" HeightRequest="60" WidthRequest="150"/>
+            <Button
+                Text="IoT"
+                Command="{Binding IoTCommad}"
+                BackgroundColor="Navy"
+                TextColor="White"
+                BorderRadius="25"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand" HeightRequest="60" WidthRequest="150"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

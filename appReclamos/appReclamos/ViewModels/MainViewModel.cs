@@ -12,6 +12,8 @@ namespace appReclamos.ViewModels
         public CreateViewModel Create { get; set; }
         public GetViewModel Get { get; set; }
         public ModifyViewModel Modify { get; set; }
+
+        public IotViewModel Iot { get; set; }
         #endregion
 
         #region Contructor
